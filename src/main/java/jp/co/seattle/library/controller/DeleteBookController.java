@@ -33,8 +33,9 @@ public class DeleteBookController {
             @RequestParam("bookId") Integer bookId,
             Model model) {
         logger.info("Welcome delete! The client locale is {}.", locale);
+        String sql = "delet form book whrer ";
 
-        return "";
+        return "home";
 
     }
 
