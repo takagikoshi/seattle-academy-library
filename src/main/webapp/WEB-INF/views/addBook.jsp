@@ -40,17 +40,23 @@
                     </div>
                     <input type="file" accept="image/*" name="thumbnail" id="thumbnail">
                 </div>
-                 
                 <div class="content_right">
-                 <c:if test="${!empty erMessage}">
-                        <div class="error">${erMessage}</div>
+                
+                
+                
+                 
+                
+                 <c:if test="${!empty erMessage || !empty errMessage || !empty errrMessage}">
+                        <div class="error">
+                        <p>${erMessage}</p>
+                        <p>${errrMessage}</p>
+                        <p>${errMessage}</p>                        
+                        </div>
                  </c:if>
-                 <c:if test="${!empty errrMessage}">
-                        <div class="error">${errrMessage}</div>
-                 </c:if>
-                  <c:if test="${!empty errMessage}">
-                        <div class="error">${errMessage}</div>
-                 </c:if>
+                 
+                
+                 
+                 
                     <div>
                         <span>書籍名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
@@ -81,15 +87,15 @@
                     <div>
                         <span>出版日</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="publisher" value="${bookInfo.publishDate}">
+                            <input type="text" name="publishDate" value="${bookInfo.publishDate}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="publisheDate">
+                            <input type="text" name="publishDate">
                         </c:if>
                         <div>
                         <span>ISBN</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="publisher" value="${bookInfo.isbn}">
+                            <input type="text" name="isbn" value="${bookInfo.isbn}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="isbn">
@@ -97,7 +103,7 @@
                         <div>
                         <span>説明文</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookInfo}">
-                            <input type="text" name="publisher" value="${bookInfo.explanation}">
+                            <input type="text" name="explanation" value="${bookInfo.explanation}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
                             <input type="text" name="explanation">

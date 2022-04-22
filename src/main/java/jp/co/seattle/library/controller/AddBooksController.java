@@ -55,7 +55,7 @@ public class AddBooksController {
             @RequestParam("publisher") String publisher,
             @RequestParam("bookId") Integer bookId,
             @RequestParam("thumbnail") MultipartFile file,
-            @RequestParam("publisheDate") String publisheDate,
+            @RequestParam("publishDate") String publishDate,
             @RequestParam("isbn") String isbn,
             @RequestParam("explanation") String explanation,
             
@@ -70,7 +70,7 @@ public class AddBooksController {
         bookInfo.setTitle(title);
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
-        bookInfo.setPublishDate(publisheDate);
+        bookInfo.setPublishDate(publishDate);
         bookInfo.setIsbn(isbn);
         bookInfo.setExplanation(explanation);
 
@@ -97,21 +97,23 @@ public class AddBooksController {
         }
         
         
-        boolean validPd = publisheDate.matches("^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$");
+        boolean validPd = publishDate.matches("^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$");
         boolean validIsbnn = isbn.matches("^[0-9]{10}$");
         boolean validIsbn = isbn.matches("^[0-9]{13}$");
-        boolean isEmptyBookInfo = title.isEmpty() ||  publisher.isEmpty() || author.isEmpty() || publisheDate.isEmpty();
-        
+        boolean isEmptyBookInfo = title.isEmpty() ||  publisher.isEmpty() || author.isEmpty() || publishDate.isEmpty();
+       
         
         
         //必須項目なし
         if (isEmptyBookInfo) {
+        	
         	model.addAttribute("erMessage", "必須項目です");
         } 
         
         //日付不正解
         if (!validPd) {
-        	model.addAttribute("errrMessage",  "出版日は半角数字の半角数字YYYYMMDD形式で入力してください");
+        	
+        	model.addAttribute("errMessage",  "出版日は半角数字の半角数字YYYYMMDD形式で入力してください");
         } 
         
       //isbn不正解	
@@ -119,7 +121,7 @@ public class AddBooksController {
         
         if(!validIsbnn && !validIsbn) {
         	
-        	    model.addAttribute("errMessage","ISBNの桁数または半角数字が正しくありません");
+        	model.addAttribute("errrMessage","ISBNの桁数または半角数字が正しくありません");
         	
         }
         
@@ -127,7 +129,7 @@ public class AddBooksController {
   
          if (!validPd  || isEmptyBookInfo || (!validIsbnn && !validIsbn)) {
         	 
-        	 model.addAttribute("bookDetailsInfo", bookInfo);
+        	 model.addAttribute("bookInfo",bookInfo);
         	 return "addBook";
          }
       
