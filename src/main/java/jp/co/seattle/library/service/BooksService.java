@@ -85,8 +85,6 @@ public class BooksService {
     	String sql = "SELECT MAX(id) FROM books";
     	
     	return jdbcTemplate.queryForObject(sql,Integer.class);
-
-    	
     	
     }
     

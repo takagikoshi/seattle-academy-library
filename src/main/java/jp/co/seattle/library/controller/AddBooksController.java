@@ -117,8 +117,6 @@ public class AddBooksController {
         } 
         
       //isbn不正解	
-       
-        
         if(!validIsbnn && !validIsbn) {
         	
         	model.addAttribute("errrMessage","ISBNの桁数または半角数字が正しくありません");

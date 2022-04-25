@@ -41,11 +41,6 @@
                     <input type="file" accept="image/*" name="thumbnail" id="thumbnail">
                 </div>
                 <div class="content_right">
-                
-                
-                
-                 
-                
                  <c:if test="${!empty erMessage || !empty errMessage || !empty errrMessage}">
                         <div class="error">
                         <p>${erMessage}</p>
@@ -53,10 +48,6 @@
                         <p>${errMessage}</p>                        
                         </div>
                  </c:if>
-                 
-                
-                 
-                 
                     <div>
                         <span>書籍名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookInfo}">
