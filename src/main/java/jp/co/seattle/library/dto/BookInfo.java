@@ -23,6 +23,15 @@ public class BookInfo {
 
     private String thumbnail;
     
+    private String isbn;
+    
+    private String explanation;
+    
+    private java.sql.Date reg;
+    
+    private java.sql.Date upd;
+    
+    
    
     
    
@@ -39,6 +48,10 @@ public class BookInfo {
         this.publisher = publisher;
         this.publishDate = publishDate;
         this.thumbnail = thumbnail;
+        this.isbn = isbn;
+        this.explanation = explanation;
+        this.reg = reg;
+        this.upd = upd;
        
     }
 
