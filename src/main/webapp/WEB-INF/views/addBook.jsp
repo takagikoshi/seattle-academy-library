@@ -41,11 +41,11 @@
                     <input type="file" accept="image/*" name="thumbnail" id="thumbnail">
                 </div>
                 <div class="content_right">
-                 <c:if test="${!empty erMessage || !empty errMessage || !empty errrMessage}">
+                 <c:if test="${!empty emptyErrorMessage || !empty PdErrorMessage || !empty IsbnErrorMessage}">
                         <div class="error">
-                        <p>${erMessage}</p>
-                        <p>${errrMessage}</p>
-                        <p>${errMessage}</p>                        
+                        <p>${emptyErrorMessage}</p>
+                        <p>${PdErrorMessage}</p>
+                        <p>${IsbnErrorMessage}</p>                        
                         </div>
                  </c:if>
                     <div>

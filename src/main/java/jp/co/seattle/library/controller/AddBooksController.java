@@ -107,19 +107,19 @@ public class AddBooksController {
         //必須項目なし
         if (isEmptyBookInfo) {
         	
-        	model.addAttribute("erMessage", "必須項目です");
+        	model.addAttribute("emptyErrorMessage", "必須項目です");
         } 
         
         //日付不正解
         if (!validPd) {
         	
-        	model.addAttribute("errMessage",  "出版日は半角数字の半角数字YYYYMMDD形式で入力してください");
+        	model.addAttribute("PdErrorMessage",  "出版日は半角数字の半角数字YYYYMMDD形式で入力してください");
         } 
         
       //isbn不正解	
         if(!validIsbnn && !validIsbn) {
         	
-        	model.addAttribute("errrMessage","ISBNの桁数または半角数字が正しくありません");
+        	model.addAttribute("IsbnErrorMessage","ISBNの桁数または半角数字が正しくありません");
         	
         }
         
