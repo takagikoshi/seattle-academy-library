@@ -81,11 +81,21 @@ public class BooksService {
     	
     }
     
+    //最新のID取得
     public Integer maxId() {
     	String sql = "SELECT MAX(id) FROM books";
     	
     	return jdbcTemplate.queryForObject(sql,Integer.class);
     	
+    }
+    
+    //書籍情報編集
+    public void editBook(BookDetailsInfo bookInfo) {
+    	String sql = "UPDATE books SET title ='" + bookInfo.getTitle() + "', author = '" + bookInfo.getAuthor() + "', publisher = '" +  bookInfo.getPublisher() 
+    	+ "', publish_date = '" + bookInfo.getPublishDate() + "', thumbnail_url ='" + bookInfo.getThumbnailUrl() + "', isbn ='"  + bookInfo.getIsbn() 
+        + "', upd_date = now(), explanation ='" + bookInfo.getExplanation() + "' Where id = " + bookInfo.getBookId();
+    	
+    	 jdbcTemplate.update(sql);
     }
     
     
