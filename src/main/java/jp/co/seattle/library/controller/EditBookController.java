@@ -21,7 +21,7 @@ import jp.co.seattle.library.service.ThumbnailService;
 public class EditBookController {
 	final static Logger logger = LoggerFactory.getLogger(EditBookController.class);
 	
-	@Autowired
+	@Autowired //APIの入り口
     private BooksService booksService;
 	
 	@Autowired
@@ -35,6 +35,16 @@ public class EditBookController {
 		 return "edit";
 	    }
 	 
+	 /**
+	  * 書籍情報を登録する
+	  * @param locale ロケール情報
+	  * @param title 書籍名
+	  * @param author 著者名
+	  * @param publisher 出版社
+	  * @param file サムネイルファイル
+	  * @param model モデル
+	  * @return 遷移先画面
+	  */
 	 @Transactional
 	 @RequestMapping(value = "/upDateBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	    public String upDateBook(Locale locale,
@@ -49,7 +59,7 @@ public class EditBookController {
 	            Model model) {
 	        logger.info("Welcome editBooks.java! The client locale is {}.", locale);
 	        
-	        
+	     // パラメータで受け取った書籍情報をDtoに格納する。
 	        BookDetailsInfo bookInfo = new BookDetailsInfo();
 	        bookInfo.setBookId(bookId);
             bookInfo.setTitle(title);
