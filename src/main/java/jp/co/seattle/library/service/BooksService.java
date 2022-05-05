@@ -73,6 +73,19 @@ public class BooksService {
         jdbcTemplate.update(sql);
     }
     
+    //書籍一括登録
+    public void bulkRegistBook(BookDetailsInfo bookInfo) {
+
+        String sql = "INSERT INTO books (title, author,publisher,publish_date,thumbnail_name,thumbnail_url,isbn,reg_date,upd_date) VALUES ('"
+        		+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"+ bookInfo.getPublishDate() + "','"
+                + bookInfo.getThumbnailName() + "','"
+                + bookInfo.getThumbnailUrl() + "','"
+                + bookInfo.getIsbn() + "',now(),"
+                + "now())";
+
+        jdbcTemplate.update(sql);
+    }
+    
     public void deleteBook(int bookId) {
     	
     	String sql = "delete from books where id =" + bookId;

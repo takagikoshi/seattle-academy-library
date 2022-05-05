@@ -273,14 +273,18 @@ hr.border_add {
 }
 
 .bulk_form {
-	text-align: center;
+	text-align:center;
+	margin-bottom:20px
 }
 .bulk_form h2{
 	margin-bottom:20px
 }
 .bulk_form .caution{
-	text-align:left;
-	margin:10px 0px 30px 400px;
+	text-align:center;
+	margin-top:10px;
+	margin-right:auto;
+	margin-bottom:30px;
+	margin-left:auto;
 }
 .bulk_form .caution p{
 	color:#fa8072;
