@@ -51,23 +51,11 @@ public class BulkRegistController {
     	ArrayList<BookDetailsInfo> bookList = new ArrayList<BookDetailsInfo>();
     	ArrayList<String> countErrors = new ArrayList<String>();
     	
-    	
     	try (BufferedReader br = new BufferedReader(new InputStreamReader(uploadFile.getInputStream(), StandardCharsets.UTF_8))){
-    		
     		int count = 0;
     		String line = ""; 
-    		
-    		 if (line.isEmpty()) {
-   	    	  model.addAttribute("emptyFail","CSVに書籍情報がありません。");
-   	    		 return "bulkRegist";
-   	    	 }
-    		
-    		
-    	      while ((line = br.readLine()) != null) {
-    	    	  
-    	    	  
-    	        final String[] split = line.split(",",-1);
-    	      
+    	      while ((line = br.readLine()) != null) { 
+    	        String[] split = line.split(",",-1);
     	        //ループの数数える
     	        count++;
     	        
@@ -76,46 +64,45 @@ public class BulkRegistController {
     	        bookInfo.setAuthor(split[1]);
     	        bookInfo.setPublisher(split[2]);
     	        bookInfo.setPublishDate(split[3]);
-    	        bookInfo.setIsbn(split[4]);
-    	        
+    	        bookInfo.setExplanation("");
     	        
     	        boolean validPd = split[3].matches("^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$");
-    	        boolean validIsbnn = split[4].matches("^[0-9]{10}$");
-    	        boolean validIsbn = split[4].matches("^[0-9]{13}$");
+    	        boolean validIsbnn = true;
+    	        boolean validIsbn = true;
+    	        if (!split[4].isEmpty()) {	
+    	        	validIsbnn = split[4].matches("^[0-9]{10}$");
+    	            validIsbn = split[4].matches("^[0-9]{13}$");
+    	            bookInfo.setIsbn(split[4]);
+    	        }else {
+    	        	bookInfo.setIsbn("");
+    	        }
     	        boolean isEmptyBookInfo = split[0].isEmpty() ||  split[2].isEmpty() || split[1].isEmpty() || split[3].isEmpty();
-    	       
-    	        
     	        if (!validPd  || isEmptyBookInfo || (!validIsbnn && !validIsbn)) {
-    	        	
         	        countErrors.add(count+ "行目の書籍登録でエラーが起きました。");
-        	        }
-    	        
+        	    }
     	        bookList.add(bookInfo);
-    	        
     	    }
     	      
-    	      
+    	      if (bookList.isEmpty()) {
+    	    	  model.addAttribute("emptyFail","CSVに書籍情報がありません。");
+    	          return "bulkRegist";
+    	       }
+ 
     	    } catch (IOException e) {
-    	    	
+    	      throw new RuntimeException("ファイルが読み込みません", e);
     	    }
-    	
     	
     	    if(countErrors.size() > 0) {
 	    		model.addAttribute("countError",countErrors);
-	    		
 	    		return "bulkRegist";
-	    		
 	    	}
-    	    
     	
     	for (BookDetailsInfo bookInfo: bookList){
     		booksService.registBook(bookInfo);
-    	}
-    	
+    		}
     	
     	model.addAttribute("bookList", booksService.getBookList());
     	return "home";
-    	
     }
 
 }
