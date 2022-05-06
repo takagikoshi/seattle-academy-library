@@ -89,7 +89,8 @@ public class BulkRegistController {
     	       }
  
     	    } catch (IOException e) {
-    	      throw new RuntimeException("ファイルが読み込みません", e);
+    	    	model.addAttribute("error","ファイルを読み込めません");
+	    		return "bulkRegist";
     	    }
     	
     	    if(countErrors.size() > 0) {

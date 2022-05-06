@@ -48,6 +48,9 @@
             <c:if test="${!empty emptyFail}">
                 <div class="error"><p>${emptyFail}</p></div>
             </c:if>
+            <c:if test="${!empty error}">
+                <div class="error"><p>${error}</p></div>
+            </c:if>
             <c:if test="${!empty countError}">
             <div class="error">
             <c:forEach var="countError" items="${countError}">
