@@ -115,7 +115,7 @@ public class BulkRegistController {
 	    	}
     	
     	for (BookDetailsInfo bookInfo: bookList){
-    		booksService.bulkRegistBook(bookInfo);
+    		booksService.registBook(bookInfo);
     		}
     	
     	
