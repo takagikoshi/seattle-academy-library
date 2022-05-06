@@ -43,7 +43,7 @@
               <div><input type="file" name = "file" accept=".csv"></div>
              </div>
             <div class="bulkBookBtn_box">
-             <button type="submit" id="edit-btn" class="btn_bulkRegist">一括登録</button>
+            <button type="submit" id="edit-btn" class="btn_bulkRegist">一括登録</button>
             </div> 
             <c:if test="${!empty emptyFail}">
                 <div class="error"><p>${emptyFail}</p></div>

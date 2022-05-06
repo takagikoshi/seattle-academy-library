@@ -28,6 +28,9 @@ public class BulkRegistController {
 	@Autowired
     private BooksService booksService;
 	
+	
+	
+	
 	@RequestMapping(value = "/bulkRegist", method = RequestMethod.GET) //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得
     public String login(Model model) {
@@ -60,11 +63,7 @@ public class BulkRegistController {
     	        count++;
     	        
     	        BookDetailsInfo bookInfo = new BookDetailsInfo();
-    	        bookInfo.setTitle(split[0]);
-    	        bookInfo.setAuthor(split[1]);
-    	        bookInfo.setPublisher(split[2]);
-    	        bookInfo.setPublishDate(split[3]);
-    	        bookInfo.setExplanation("");
+    	        
     	        
     	        boolean validPd = split[3].matches("^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$");
     	        boolean validIsbnn = true;
@@ -80,6 +79,14 @@ public class BulkRegistController {
     	        if (!validPd  || isEmptyBookInfo || (!validIsbnn && !validIsbn)) {
         	        countErrors.add(count+ "行目の書籍登録でエラーが起きました。");
         	    }
+    	        
+    	        bookInfo.setTitle(split[0]);
+    	        bookInfo.setAuthor(split[1]);
+    	        bookInfo.setPublisher(split[2]);
+    	        bookInfo.setPublishDate(split[3]);
+    	        bookInfo.setExplanation("");
+    	        
+    	        
     	        bookList.add(bookInfo);
     	    }
     	      
