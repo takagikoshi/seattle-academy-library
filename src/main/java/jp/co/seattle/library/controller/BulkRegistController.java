@@ -57,6 +57,12 @@ public class BulkRegistController {
     		int count = 0;
     		String line = ""; 
     		
+    		 if (line.isEmpty()) {
+   	    	  model.addAttribute("emptyFail","CSVに書籍情報がありません。");
+   	    		 return "bulkRegist";
+   	    	 }
+    		
+    		
     	      while ((line = br.readLine()) != null) {
     	    	  
     	    	  
@@ -84,22 +90,15 @@ public class BulkRegistController {
         	        countErrors.add(count+ "行目の書籍登録でエラーが起きました。");
         	        }
     	        
-    	        
-    	        
     	        bookList.add(bookInfo);
-    	    
     	        
     	    }
     	      
-    	      if (bookList.isEmpty()) {
-    	    	  model.addAttribute("emptyFail","CSVに書籍情報がありません。");
-    	    		 return "bulkRegist";
-    	    	 }
- 
     	      
     	    } catch (IOException e) {
     	    	
     	    }
+    	
     	
     	    if(countErrors.size() > 0) {
 	    		model.addAttribute("countError",countErrors);
@@ -107,13 +106,13 @@ public class BulkRegistController {
 	    		return "bulkRegist";
 	    		
 	    	}
+    	    
     	
     	for (BookDetailsInfo bookInfo: bookList){
     		booksService.registBook(bookInfo);
-    		}
+    	}
     	
     	
-    	 
     	model.addAttribute("bookList", booksService.getBookList());
     	return "home";
     	
