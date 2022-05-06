@@ -35,15 +35,13 @@ public class BulkRegistController {
     }
 	
 	/**
-     * 書籍情報を登録する
+     * 書籍情報を一括登録する
      * @param locale ロケール情報
-     * @param title 書籍名
-     * @param author 著者名
-     * @param publisher 出版社
-     * @param file サムネイルファイル
+     * @param file CSVファイル
      * @param model モデル
      * @return 遷移先画面
      */
+	
     @Transactional
 	@RequestMapping(value = "/bulkRegistBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String bulkRegistBook(Locale locale,Model model,
@@ -58,10 +56,6 @@ public class BulkRegistController {
     		
     		int count = 0;
     		String line = ""; 
-    		
-    		
-    		
-    		
     		
     	      while ((line = br.readLine()) != null) {
     	    	  
