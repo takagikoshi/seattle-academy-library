@@ -32,7 +32,7 @@ public class BorrowService {
     	
     }
 
-    //貸出中のID取得
+    //貸出中の書籍IDのデータ数取得
     public int borrowId(int bookId) {
     	String sql = "SELECT COUNT(book_id) FROM borrow WHERE book_id = " + bookId;
     	
@@ -40,6 +40,7 @@ public class BorrowService {
     	
     }
     
+  //書籍返却
     public void returnBook(int bookId) {
     	String sql = "delete from borrow where book_id =" + bookId;
     	
@@ -47,6 +48,15 @@ public class BorrowService {
     	
     }
     
-    
+  //貸出中の書籍ID取得
+    public int notId(int bookId) {
+    	try {
+    	String sql = "SELECT book_id from borrow where book_id=" + bookId;
+    	
+    	return jdbcTemplate.queryForObject(sql,int.class);
+    	} catch (Exception e) {
+    		return 0;
+    	}
+    }    
 
 }
