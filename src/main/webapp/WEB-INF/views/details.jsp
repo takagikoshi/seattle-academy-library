@@ -56,6 +56,9 @@
                 <c:if test="${!empty borrowError}">
                     <p class="error">${borrowError}</p>
                 </c:if>  
+                <c:if test="${!empty returnError}">
+                    <p class="error">${returnError}</p>
+                </c:if>
             </div>
             <div class="content_right">
                 <div>
@@ -88,7 +91,7 @@
         <form method="post" action="borrow">
         <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
         </form>
-        <form method="post" action="deleteBook">
+        <form method="post" action="return">
         <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
         </form>
         <form method="post" action="editBook">

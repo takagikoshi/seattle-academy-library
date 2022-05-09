@@ -39,5 +39,14 @@ public class BorrowService {
     	return jdbcTemplate.queryForObject(sql,int.class);
     	
     }
+    
+    public void returnBook(int bookId) {
+    	String sql = "delete from borrow where book_id =" + bookId;
+    	
+    	jdbcTemplate.update(sql);
+    	
+    }
+    
+    
 
 }
