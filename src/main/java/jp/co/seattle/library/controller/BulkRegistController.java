@@ -90,7 +90,7 @@ public class BulkRegistController {
     	        bookList.add(bookInfo);
     	    }
     	      
-    	      if (bookList.isEmpty()) {
+    	      if (bookList.size()== 0) {
     	    	  model.addAttribute("emptyFail","CSVに書籍情報がありません。");
     	          return "bulkRegist";
     	       }
