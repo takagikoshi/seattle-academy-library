@@ -95,6 +95,7 @@ public class EditBookController {
 	 boolean validPd = publishDate.matches("^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$");
      boolean validIsbnn = isbn.matches("^[0-9]{10}$");
      boolean validIsbn = isbn.matches("^[0-9]{13}$");
+     boolean Isbn = isbn.isEmpty();
      boolean isEmptyBookInfo = title.isEmpty() ||  publisher.isEmpty() || author.isEmpty() || publishDate.isEmpty();
     
      
@@ -112,7 +113,7 @@ public class EditBookController {
      } 
      
    //isbn不正解	
-     if(!validIsbnn && !validIsbn) {
+     if(!validIsbnn && !validIsbn && !Isbn) {
      	
     	 model.addAttribute("IsbnErrorMessage","ISBNの桁数または半角数字が正しくありません");
      	
@@ -120,7 +121,7 @@ public class EditBookController {
      
 
 
-      if (!validPd  || isEmptyBookInfo || (!validIsbnn && !validIsbn)) {
+      if (!validPd  || isEmptyBookInfo || (!validIsbnn && !validIsbn && !Isbn)) {
      	 
      	 model.addAttribute("bookInfo",bookInfo);
      	 return "edit";
