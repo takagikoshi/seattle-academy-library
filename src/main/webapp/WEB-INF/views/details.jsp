@@ -44,14 +44,6 @@
                     </a>
                 </div>
                 <div>
-                <c:choose>
-                   <c:when test="${!empty Book}">
-                      <p>${Book}</p>
-                   </c:when>
-                   <c:when test="${!empty borrowBook}">
-                      <p>${borrowBook}</p>
-                   </c:when>
-                </c:choose>
                 </div>
                 <c:if test="${!empty borrowError}">
                     <p class="error">${borrowError}</p>
