@@ -19,6 +19,7 @@ public class BorrowService {
 	
 	//重複のない書籍貸し出し記録
     public void borrowBook(int bookId) {
+    	
     	String sql = "insert into borrow (book_id) select " + bookId + " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
     	
     	 jdbcTemplate.update(sql);
@@ -26,37 +27,40 @@ public class BorrowService {
     
     //貸出レコードカウント
     public int count() {
+    	
     	String sql = "SELECT COUNT(book_id) FROM borrow";
     	
     	return jdbcTemplate.queryForObject(sql,int.class);
-    	
     }
 
     //貸出中の書籍IDのデータ数取得
     public int borrowId(int bookId) {
+    	
     	String sql = "SELECT COUNT(book_id) FROM borrow WHERE book_id = " + bookId;
     	
     	return jdbcTemplate.queryForObject(sql,int.class);
-    	
     }
     
   //書籍返却
     public void returnBook(int bookId) {
+    	
     	String sql = "delete from borrow where book_id =" + bookId;
     	
     	jdbcTemplate.update(sql);
-    	
     }
     
   //貸出中の書籍ID取得
     public int notId(int bookId) {
-    	try {
-    	String sql = "SELECT book_id from borrow where book_id=" + bookId;
     	
-    	return jdbcTemplate.queryForObject(sql,int.class);
+    	try {
+    		
+    		String sql = "SELECT book_id from borrow where book_id=" + bookId;
+    		return jdbcTemplate.queryForObject(sql,int.class);
+    		
     	} catch (Exception e) {
+    		
     		return 0;
     	}
     }    
-
+    
 }

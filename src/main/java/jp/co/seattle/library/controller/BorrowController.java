@@ -24,8 +24,9 @@ public class BorrowController {
 	
 	@Autowired
     private BooksService booksService;
+	
 	@Autowired
-    private BorrowService borrowService;
+	private BorrowService borrowService;
 	
 	/**
      * 詳細画面に遷移する
@@ -45,8 +46,6 @@ public class BorrowController {
         int size = borrowService.count();
         borrowService.borrowBook(bookId);
         int count = borrowService.count();
-        
-        model.addAttribute("borrowBook", "貸出し中");
         
         if (size == count){
         	model.addAttribute("borrowError", "貸出し済です。");
