@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.service.BooksService;
-import jp.co.seattle.library.service.BorrowService;
 import jp.co.seattle.library.service.ThumbnailService;
 
 @Controller
@@ -27,9 +26,6 @@ public class EditBookController {
 	
 	@Autowired
     private ThumbnailService thumbnailService;
-	
-	@Autowired
-    private BorrowService borrowService;
 	
 	 @Transactional
 	 @RequestMapping(value = "/editBook", method = RequestMethod.POST,produces = "text/plain;charset=utf-8") //value＝actionで指定したパラメータ
@@ -136,12 +132,6 @@ public class EditBookController {
      
      
      //  詳細画面に遷移する
-     int a =borrowService.borrowId(editId);
-     if (a==0) {
-     	model.addAttribute("Book", "貸出し可");
-     }else {
-     	 model.addAttribute("borrowBook", "貸出し中");
-     }     
      
      	model.addAttribute("bookDetailsInfo",booksService.getBookInfo(editId));
      	return "details";

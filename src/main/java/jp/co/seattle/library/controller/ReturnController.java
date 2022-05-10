@@ -48,7 +48,6 @@ final static Logger logger = LoggerFactory.getLogger(ReturnController.class);
         
         int size = borrowService.count();
         borrowService.returnBook(bookId);
-        model.addAttribute("Book", "貸出し可");
         int count = borrowService.count();
         
         if (size == count){
