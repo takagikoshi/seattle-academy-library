@@ -55,7 +55,6 @@ public class DeleteBookController {
             return "home";
             
         }else {
-        	model.addAttribute("borrowBook", "貸出し中");
         	model.addAttribute("Error", "貸出し中です。");
         	model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
             return "details";

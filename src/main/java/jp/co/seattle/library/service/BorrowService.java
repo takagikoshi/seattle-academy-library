@@ -38,17 +38,6 @@ public class BorrowService {
     	
     	return jdbcTemplate.queryForObject(sql,int.class);
     }
-
-    /**
-     * 貸出中のID取得
-     *
-     */
-    public int borrowId(int bookId) {
-    	
-    	String sql = "SELECT COUNT(book_id) FROM borrow WHERE book_id = " + bookId;
-    	
-    	return jdbcTemplate.queryForObject(sql,int.class);
-    }
     
     /**
      * 書籍返却
