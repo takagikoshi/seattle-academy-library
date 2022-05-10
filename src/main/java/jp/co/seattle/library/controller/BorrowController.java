@@ -43,7 +43,7 @@ public class BorrowController {
         logger.info("Welcome borrowController.java! The client locale is {}.", locale);
         
         int size = borrowService.count();
-        borrowService.borrowBook(bookId);
+        borrowService.registBorrow(bookId);
         int count = borrowService.count();
         
         model.addAttribute("borrowBook", "貸出し中");

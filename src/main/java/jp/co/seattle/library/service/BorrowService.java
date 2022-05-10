@@ -21,7 +21,7 @@ public class BorrowService {
 	 * 書籍貸し出しテーブルに追加
 	 *
 	 */
-    public void borrowBook(int bookId) {
+    public void registBorrow(int bookId) {
     	String sql = "insert into borrow (book_id) select " + bookId + " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
     	
     	 jdbcTemplate.update(sql);
