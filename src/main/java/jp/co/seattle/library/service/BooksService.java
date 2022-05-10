@@ -79,7 +79,6 @@ public class BooksService {
     	String sql = "delete from books where id =" + bookId;
     	
     	jdbcTemplate.update(sql);
-    	
     }
     
     //最新のID取得
@@ -87,7 +86,6 @@ public class BooksService {
     	String sql = "SELECT MAX(id) FROM books";
     	
     	return jdbcTemplate.queryForObject(sql,Integer.class);
-    	
     }
     
     //書籍情報編集
@@ -98,7 +96,5 @@ public class BooksService {
     	
     	 jdbcTemplate.update(sql);
     }
-    
-    
     
 }
