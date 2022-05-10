@@ -17,14 +17,20 @@ public class BorrowService {
 	    @Autowired
 	    private JdbcTemplate jdbcTemplate;
 	
-	//重複のない書籍貸し出し記録
-    public void borrowBook(int bookId) {
+	/**
+	 * 書籍貸し出しテーブルに追加
+	 *
+	 */
+    public void registBorrow(int bookId) {
     	String sql = "insert into borrow (book_id) select " + bookId + " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
     	
     	 jdbcTemplate.update(sql);
     }
     
-    //貸出レコードカウント
+    /**
+	 * 貸出レコードカウント
+	 *
+	 */
     public int count() {
     	String sql = "SELECT COUNT(book_id) FROM borrow";
     	
@@ -32,7 +38,10 @@ public class BorrowService {
     	
     }
 
-    //貸出中のID取得
+    /**
+	 * 貸出中のID取得
+	 *
+	 */
     public int borrowId(int bookId) {
     	String sql = "SELECT COUNT(book_id) FROM borrow WHERE book_id = " + bookId;
     	
