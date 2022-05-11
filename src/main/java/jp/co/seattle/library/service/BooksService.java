@@ -38,6 +38,38 @@ public class BooksService {
 
 		return getedBookList;
 	}
+	
+	/**
+	 * 検索した書籍リストを取得する
+	 *
+	 *@param 検索文字
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> searchAllBookList(String search) {
+
+		// TODO 取得したい情報を取得するようにSQLを修正
+		List<BookInfo> getedBookList = jdbcTemplate.query(
+				"select id, title, author, publisher , publish_date, thumbnail_url ,isbn, explanation ,reg_date,upd_date from books  where title ='"+search+"'ORDER BY title",
+				new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+	
+	/**
+	 * 検索した書籍リストを取得する
+	 *
+	 *@param 検索文字
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> searchPartBookList(String search) {
+
+		// TODO 取得したい情報を取得するようにSQLを修正
+		List<BookInfo> getedBookList = jdbcTemplate.query(
+				"select id, title, author, publisher , publish_date, thumbnail_url ,isbn, explanation ,reg_date,upd_date from books  where title like '"+search+"%'ORDER BY title",
+				new BookInfoRowMapper());
+
+		return getedBookList;
+	}
 
 	/**
 	 * 書籍IDに紐づく書籍詳細情報を取得する

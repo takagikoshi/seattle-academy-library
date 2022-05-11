@@ -2,6 +2,9 @@ package jp.co.seattle.library.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ import jp.co.seattle.library.service.BooksService;
 @Controller // APIの入り口
 public class SearchController {
 	final static Logger logger = LoggerFactory.getLogger(SearchController.class);
-	
+
 	@Autowired
 	private BooksService booksService;
 
@@ -31,14 +34,25 @@ public class SearchController {
 	 */
 	@Transactional
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String borrowBook(Locale locale, @RequestParam("search") String search,Model model) {
+	public String borrowBook(Locale locale, @RequestParam("search") String search, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
 		// デバッグ用ログ
 		logger.info("Welcome SearchController.java! The client locale is {}.", locale);
-		
-		model.addAttribute("bookList", booksService.getBookList(search));
-		
-		
 
+		String all = request.getParameter("radiobuttonAll");
+		String part = request.getParameter("radiobuttonPart");
+
+		if (all != null) {
+			model.addAttribute("bookList", booksService.searchAllBookList(search));
+			return "home";
+		} else if (part != null) {
+
+			model.addAttribute("bookList", booksService.searchPartBookList(search));
+
+			return "home";
+		}
+		model.addAttribute("select", "検索方法を選択してください");
+		model.addAttribute("bookList", booksService.getBookList());
 		return "home";
 	}
 }

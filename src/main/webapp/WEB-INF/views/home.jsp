@@ -26,16 +26,18 @@
     </header>
     <main>
         <h1>Home</h1>
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a>
-        <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
-        <form method="post" class="book_thumnail" action="<%=request.getContextPath()%>/search">
-        <div class="right">
-          <input type="radio" name = "radiobutton" value="完全一致">完全一致
-          <input type="radio" name = "radiobutton" value="部分一致">部分一致
-        　<input type="search" name = "search" placeholder="キーワードを入力">
-          <input type="submit" name = "submit" placeholder="検索">
-        </div>
-         </form>
+        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
+        <form method="post" class="" action="<%=request.getContextPath()%>/search">
+            <div class="right">
+                <input type="radio" name="radiobuttonAll" value="完全一致">完全一致 <input type="radio" name="radiobuttonPart" value="部分一致">部分一致 <input type="search" name="search" placeholder="キーワードを入力"> <input type="submit" name="submit" placeholder="検索">
+            </div>
+        </form>
+        <c:if test="${!empty select}">
+            <div class="error">${select}</div>
+        </c:if>
+         <c:if test="${empty bookList}">
+            <div class="error">書籍がありません</div>
+        </c:if>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
                 <div class="error_msg">${resultMessage}</div>
@@ -45,11 +47,9 @@
                     <c:forEach var="bookInfo" items="${bookList}">
                         <div class="books">
                             <form method="post" class="book_thumnail" action="<%=request.getContextPath()%>/details">
-                                <a href="javascript:void(0)" onclick="this.parentNode.submit();">
-                                 	<c:if test="${bookInfo.thumbnail == 'null'}">
+                                <a href="javascript:void(0)" onclick="this.parentNode.submit();"> <c:if test="${bookInfo.thumbnail == 'null'}">
                                         <img class="book_noimg" src="resources/img/noImg.png">
-                                    </c:if>
-                                    <c:if test="${bookInfo.thumbnail != 'null'}">
+                                    </c:if> <c:if test="${bookInfo.thumbnail != 'null'}">
                                         <img class="book_noimg" src="${bookInfo.thumbnail}">
                                     </c:if>
                                 </a> <input type="hidden" name="bookId" value="${bookInfo.bookId}">
