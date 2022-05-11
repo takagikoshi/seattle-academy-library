@@ -42,13 +42,13 @@ public class BorrowController {
         // デバッグ用ログ
         logger.info("Welcome borrowController.java! The client locale is {}.", locale);
         
-        int size = borrowService.count();
+        int countBefore  = borrowService.count();
         borrowService.registBorrow(bookId);
-        int count = borrowService.count();
+        int countAfter = borrowService.count();
         
         model.addAttribute("borrowBook", "貸出し中");
         
-        if (size == count){
+        if (countBefore  == countAfter){
         	model.addAttribute("borrowError", "貸出し済です。");
         }
         
