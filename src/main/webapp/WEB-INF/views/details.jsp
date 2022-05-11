@@ -45,6 +45,7 @@
                 </div>
                 <div>
                 </div>
+                <p>${bookDetailsInfo.status}</p>
                 <c:if test="${!empty borrowError}">
                     <p class="error">${borrowError}</p>
                 </c:if>  

@@ -32,6 +32,8 @@ public class BookDetailsInfo {
     
     private String explanation;
     
+    private String status;
+    
     private java.sql.Date reg;
     
     private java.sql.Date upd;
