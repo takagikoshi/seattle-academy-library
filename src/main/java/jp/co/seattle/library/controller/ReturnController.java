@@ -17,47 +17,41 @@ import jp.co.seattle.library.service.BorrowService;
 
 /**
  * 返却コントローラー
- */
-@Controller //APIの入り口
-public class ReturnController {
-final static Logger logger = LoggerFactory.getLogger(ReturnController.class);
-    
-    
-    @Autowired
-    private BooksService booksService;
-    
-    @Autowired
-    private BorrowService borrowService;
+ */@Controller // APIの入り口
+ public class ReturnController {
+		final static Logger logger = LoggerFactory.getLogger(ReturnController.class);
 
+		@Autowired
+		private BooksService booksService;
 
-    /**
-     * 対象書籍を返却する
-     *
-     * @param locale ロケール情報
-     * @param bookId 書籍ID
-     * @param model モデル情報
-     * @return 遷移先画面名
-     */
-    @Transactional
-    @RequestMapping(value = "/return", method = RequestMethod.POST)
-    public String returnBook(
-            Locale locale,
-            @RequestParam("bookId") Integer bookId,
-            Model model) {
-        logger.info("Welcome delete! The client locale is {}.", locale);
-        
-        int size = borrowService.count();
-        borrowService.returnBook(bookId);
-        int count = borrowService.count();
-        
-        if (size == count){
-        	model.addAttribute("returnError", "貸出しされていません。");
-        }
-        
-        model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+		@Autowired
+		private BorrowService borrowService;
 
-        return "details";
+		/**
+		 * 対象書籍を返却する
+		 *
+		 * @param locale ロケール情報
+		 * @param bookId 書籍ID
+		 * @param model  モデル情報
+		 * @return 遷移先画面名
+		 */
+		@Transactional
+		@RequestMapping(value = "/return", method = RequestMethod.POST)
+		public String returnBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
+			logger.info("Welcome delete! The client locale is {}.", locale);
 
-    }
+		int countBefore = borrowService.count();
+		borrowService.returnBook(bookId);
+		int countAfter = borrowService.count();
+
+		if (countBefore == countAfter) {
+			model.addAttribute("returnError", "貸出しされていません。");
+		}
+
+		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
+		return "details";
+
+	}
 
 }
