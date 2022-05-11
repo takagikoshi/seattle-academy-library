@@ -21,39 +21,41 @@ import jp.co.seattle.library.service.BorrowService;
 @Controller
 public class BorrowController {
 	final static Logger logger = LoggerFactory.getLogger(BorrowController.class);
-	
+
 	@Autowired
-    private BooksService booksService;
-	
+	private BooksService booksService;
+
 	@Autowired
 	private BorrowService borrowService;
-	
+
 	/**
-     * 詳細画面に遷移する
-     * @param locale
-     * @param bookId
-     * @param model
-     * @return
-     */
+	 * 詳細画面に遷移する
+	 * 
+	 * @param locale
+	 * @param bookId
+	 * @param model
+	 * @return
+	 */
 	@Transactional
-    @RequestMapping(value = "/borrow", method = RequestMethod.POST)
-    public String borrowBook(Locale locale,
-            @RequestParam("bookId") int bookId,
-           Model model) {
-        // デバッグ用ログ
-        logger.info("Welcome borrowController.java! The client locale is {}.", locale);
-        
-        int size = borrowService.count();
-        borrowService.registBorrow(bookId);
-        int count = borrowService.count();
-        
-        if (size == count){
-        	model.addAttribute("borrowError", "貸出し済です。");
-        }
-        
-        model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-       
-        return "details";
-    }
+	@RequestMapping(value = "/borrow", method = RequestMethod.POST)
+	public String borrowBook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
+		// デバッグ用ログ
+		logger.info("Welcome borrowController.java! The client locale is {}.", locale);
+
+		int countBefore = borrowService.count();
+		borrowService.registBorrow(bookId);
+		int countAfter = borrowService.count();
+
+		model.addAttribute("borrowBook", "貸出し中");
+
+		if (countBefore == countAfter) {
+
+			model.addAttribute("borrowError", "貸出し済です。");
+		}
+
+		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
+		return "details";
+	}
 
 }

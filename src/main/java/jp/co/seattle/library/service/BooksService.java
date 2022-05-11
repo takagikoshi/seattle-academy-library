@@ -70,6 +70,11 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 	}
 
+	/**
+	 * 書籍を消去する
+	 *
+	 * @param bookId 書籍Id
+	 */
 	public void deleteBook(int bookId) {
 
 		String sql = "delete from books where id =" + bookId;
@@ -77,14 +82,21 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 	}
 
-	// 最新のID取得
+	/**
+	 * 最新のID取得
+	 *
+	 */
 	public Integer maxId() {
 		String sql = "SELECT MAX(id) FROM books";
 
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
-	// 書籍情報編集
+	/**
+	 * 書籍を編集する
+	 *
+	 * @param bookInfo 書籍情報
+	 */
 	public void editBook(BookDetailsInfo bookInfo) {
 		String sql = "UPDATE books SET title ='" + bookInfo.getTitle() + "', author = '" + bookInfo.getAuthor()
 				+ "', publisher = '" + bookInfo.getPublisher() + "', publish_date = '" + bookInfo.getPublishDate()

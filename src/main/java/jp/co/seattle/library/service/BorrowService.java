@@ -19,7 +19,8 @@ public class BorrowService {
 
 	/**
 	 * 書籍貸し出しテーブルに追加
-	 *
+	 * 
+	 * @param bookId 書籍Id
 	 */
 	public void registBorrow(int bookId) {
 
@@ -41,19 +42,9 @@ public class BorrowService {
 	}
 
 	/**
-	 * 書籍返却
-	 *
-	 */
-	public void returnBook(int bookId) {
-
-		String sql = "delete from borrow where book_id =" + bookId;
-
-		jdbcTemplate.update(sql);
-	}
-
-	/**
 	 * 貸出中の書籍ID取得
 	 *
+	 * @param bookInfo 書籍情報
 	 */
 	public int notId(int bookId) {
 
@@ -66,6 +57,18 @@ public class BorrowService {
 
 			return 0;
 		}
+	}
+
+	/**
+	 * 貸し出し書籍返却
+	 *
+	 * @param bookInfo 書籍情報
+	 */
+	public void returnBook(int bookId) {
+		String sql = "delete from borrow where book_id =" + bookId;
+
+		jdbcTemplate.update(sql);
+
 	}
 
 }
