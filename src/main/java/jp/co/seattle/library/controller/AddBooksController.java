@@ -29,7 +29,6 @@ public class AddBooksController {
 
     @Autowired
     private ThumbnailService thumbnailService;
-    
 
     @RequestMapping(value = "/addBook", method = RequestMethod.GET) //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得

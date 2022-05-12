@@ -9,44 +9,47 @@ import org.springframework.stereotype.Service;
 /**
  * 書籍サービス
  * 
- *  borrowテーブルに関する処理を実装する
+ * borrowテーブルに関する処理を実装する
  */
 @Service
 public class BorrowService {
-	 final static Logger logger = LoggerFactory.getLogger(BorrowService.class);
-	    @Autowired
-	    private JdbcTemplate jdbcTemplate;
-	
+	final static Logger logger = LoggerFactory.getLogger(BorrowService.class);
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
 	/**
 	 * 書籍貸し出しテーブルに追加
-	 *
+	 * 
+	 *@param bookId 書籍Id
 	 */
-    public void registBorrow(int bookId) {
-    	String sql = "insert into borrow (book_id) select " + bookId + " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
-    	
-    	 jdbcTemplate.update(sql);
-    }
-    
-    /**
+	public void registBorrow(int bookId) {
+		String sql = "insert into borrow (book_id) select " + bookId
+				+ " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
+
+		jdbcTemplate.update(sql);
+	}
+
+	/**
 	 * 貸出レコードカウント
 	 *
 	 */
-    public int count() {
-    	String sql = "SELECT COUNT(book_id) FROM borrow";
-    	
-    	return jdbcTemplate.queryForObject(sql,int.class);
-    	
-    }
+	public int count() {
+		String sql = "SELECT COUNT(book_id) FROM borrow";
 
-    /**
-	 * 貸出中のID取得
+		return jdbcTemplate.queryForObject(sql, int.class);
+
+	}
+
+	/**
+	 * 貸し出し書籍返却
 	 *
+	 *@param bookInfo 書籍情報
 	 */
-    public int borrowId(int bookId) {
-    	String sql = "SELECT COUNT(book_id) FROM borrow WHERE book_id = " + bookId;
-    	
-    	return jdbcTemplate.queryForObject(sql,int.class);
-    	
-    }
+	public void returnBook(int bookId) {
+		String sql = "delete from borrow where book_id =" + bookId;
+
+		jdbcTemplate.update(sql);
+
+	}
 
 }
