@@ -38,7 +38,6 @@ public class SearchController {
 			HttpServletRequest request, HttpServletResponse response) {
 		// デバッグ用ログ
 		logger.info("Welcome SearchController.java! The client locale is {}.", locale);
-		
 
 		if (search.isEmpty()) {
 			model.addAttribute("partError", "検索ワードを入れてください");
@@ -49,13 +48,6 @@ public class SearchController {
 		System.out.println(select);
 		String all = "完全一致";
 		String part = "部分一致";
-		
-		if (all.isEmpty()&&part.isEmpty()){
-			model.addAttribute("bookList", booksService.getBookList());
-			model.addAttribute("select", "検索方法を選択してください");
-			return "home";
-		}
-		
 
 		if (select.equals(all)) {
 			model.addAttribute("bookList", booksService.searchAllBookList(search));
@@ -66,9 +58,7 @@ public class SearchController {
 
 			return "home";
 		}
-		
-		
-		model.addAttribute("select", "検索方法を選択してください");
+
 		model.addAttribute("bookList", booksService.getBookList());
 		return "home";
 	}

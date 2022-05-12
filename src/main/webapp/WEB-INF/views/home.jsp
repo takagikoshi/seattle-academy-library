@@ -10,6 +10,7 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css">
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet" type="text/css">
+<script src="resources/js/search.js"/></script>
 </head>
 <body class="wrapper">
     <header>
@@ -29,7 +30,7 @@
         <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
         <form method="post" class="" action="<%=request.getContextPath()%>/search">
             <div class="right">
-                <input type="radio" name="radiobutton" value="完全一致">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致 <input type="search" name="search" placeholder="キーワードを入力"> <input type="submit" name="submit" placeholder="検索">
+                <input type="radio" name="radiobutton" value="完全一致" checked="checked">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致 <input class="input" type="search" name="search" placeholder="キーワードを入力"> <input class="button" type="submit" name="submit" placeholder="検索">
             </div>
         </form>
         <c:if test="${!empty partError}">
