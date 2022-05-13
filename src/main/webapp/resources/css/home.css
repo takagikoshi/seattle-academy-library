@@ -95,6 +95,9 @@ input {
 
 .booklist {
     margin-top: 15px;
+    margin-right:auto;
+	margin-bottom:auto;
+	margin-left:auto;
 }
 
 .books {
@@ -290,3 +293,6 @@ hr.border_add {
 	color:#fa8072;
 }
 
+.right{
+	text-align: right;
+}

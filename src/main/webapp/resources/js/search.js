@@ -9,5 +9,7 @@ $(function() {
 		} else {
 			button.disabled = false;
 		}
+		return false;
 	}
+	stateHandle();
 });

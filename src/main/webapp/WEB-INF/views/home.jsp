@@ -10,7 +10,8 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css">
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet" type="text/css">
-<script src="resources/js/search.js"/></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="resources/js/search.js"></script>
 </head>
 <body class="wrapper">
     <header>
@@ -27,15 +28,19 @@
     </header>
     <main>
         <h1>Home</h1>
+        
         <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
-        <form method="post" class="" action="<%=request.getContextPath()%>/search">
-            <div class="right">
-                <input type="radio" name="radiobutton" value="完全一致" checked="checked">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致 <input class="input" type="search" name="search" placeholder="キーワードを入力"> <input class="button" type="submit" name="submit" placeholder="検索">
-            </div>
+       
+        <form method="post" class="" action="<%=request.getContextPath()%>/search"style="display:inline;float: right;">
+            
+                <input type="radio" name="radiobutton" value="完全一致" checked="checked">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致 
+                <p style="display:inline-flex">
+                <input class="input" type="search" name="search" placeholder="キーワードを入力"> <input class="button" type="submit" name="submit" value="検索">
+           </p>
         </form>
-        <c:if test="${!empty partError}">
-            <div class="error">${partError}</div>
-        </c:if>
+      
+        
+        
         <c:if test="${!empty select}">
             <div class="error">${select}</div>
         </c:if>
@@ -46,7 +51,7 @@
             <c:if test="${!empty resultMessage}">
                 <div class="error_msg">${resultMessage}</div>
             </c:if>
-            <div>
+            
                 <div class="booklist">
                     <c:forEach var="bookInfo" items="${bookList}">
                         <div class="books">
@@ -67,7 +72,7 @@
                         </div>
                     </c:forEach>
                 </div>
-            </div>
+            
         </div>
     </main>
 </body>

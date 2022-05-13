@@ -39,13 +39,7 @@ public class SearchController {
 		// デバッグ用ログ
 		logger.info("Welcome SearchController.java! The client locale is {}.", locale);
 
-		if (search.isEmpty()) {
-			model.addAttribute("partError", "検索ワードを入れてください");
-			return "home";
-		}
-
 		String select = request.getParameter("radiobutton");
-		System.out.println(select);
 		String all = "完全一致";
 		String part = "部分一致";
 
