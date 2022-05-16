@@ -1,6 +1,6 @@
 $(function() {
-	let input = document.querySelector('#input1');
-	let button = document.querySelector("#input2");
+	let input = document.querySelector('#inputBox');
+	let button = document.querySelector("#inputBotton");
 	button.disabled = true;
 	input.addEventListener("change", stateHandle);
 	function stateHandle() {

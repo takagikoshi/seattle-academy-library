@@ -36,7 +36,7 @@
                 <input type="radio" name="radiobutton" value="1" checked="checked">完全一致 <input type="radio" name="radiobutton" value="2">部分一致
             </p>
             <p class ="searchBotton">
-                <input id = "input1" class="input" type="search" name="search" placeholder="キーワードを入力"> <input id = "input2" class="button" type="submit" name="submit" value="検索" style="width: 70px; background: #7fbfff; color: #fff; font-size: 16px">
+                <input id = "inputBox" class="input" type="search" name="search" placeholder="キーワードを入力"> <input id = "inputBotton" class="button" type="submit" name="submit" value="検索" style="width: 70px; background: #7fbfff; color: #fff; font-size: 16px">
             </p>
         </form>
         <c:if test="${!empty select}">
