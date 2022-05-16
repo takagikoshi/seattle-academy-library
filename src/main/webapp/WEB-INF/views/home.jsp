@@ -28,19 +28,17 @@
     </header>
     <main>
         <h1>Home</h1>
-        
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
-       
-        <form method="post" class="" action="<%=request.getContextPath()%>/search"style="display:inline;float: right;">
-            
-                <input type="radio" name="radiobutton" value="完全一致" checked="checked">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致 
-                <p style="display:inline-flex">
-                <input class="input" type="search" name="search" placeholder="キーワードを入力"> <input class="button" type="submit" name="submit" value="検索">
-           </p>
+        <form method="post" class="" action="<%=request.getContextPath()%>/search" style="display: flex; justify-content: flex-end">
+            <div style="margin-right: auto;">
+                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
+            </div>
+            <p style="margin: auto 0; padding: 20px">
+                <input type="radio" name="radiobutton" value="完全一致" checked="checked">完全一致 <input type="radio" name="radiobutton" value="部分一致">部分一致
+            </p>
+            <p style="display: inline-flex">
+                <input class="input" type="search" name="search" placeholder="キーワードを入力"> <input class="button" type="submit" name="submit" value="検索" style="width: 70px; background: #7fbfff; color: #fff; font-size: 16px">
+            </p>
         </form>
-      
-        
-        
         <c:if test="${!empty select}">
             <div class="error">${select}</div>
         </c:if>
@@ -51,7 +49,7 @@
             <c:if test="${!empty resultMessage}">
                 <div class="error_msg">${resultMessage}</div>
             </c:if>
-            
+            <div>
                 <div class="booklist">
                     <c:forEach var="bookInfo" items="${bookList}">
                         <div class="books">
@@ -72,7 +70,7 @@
                         </div>
                     </c:forEach>
                 </div>
-            
+            </div>
         </div>
     </main>
 </body>
