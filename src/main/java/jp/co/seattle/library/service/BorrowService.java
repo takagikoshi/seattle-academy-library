@@ -20,9 +20,10 @@ public class BorrowService {
 	/**
 	 * 書籍貸し出しテーブルに追加
 	 * 
-	 *@param bookId 書籍Id
+	 * @param bookId 書籍Id
 	 */
 	public void registBorrow(int bookId) {
+
 		String sql = "insert into borrow (book_id) select " + bookId
 				+ " where NOT EXISTS (select book_id from borrow where book_id=" + bookId + ")";
 
@@ -34,16 +35,34 @@ public class BorrowService {
 	 *
 	 */
 	public int count() {
+
 		String sql = "SELECT COUNT(book_id) FROM borrow";
 
 		return jdbcTemplate.queryForObject(sql, int.class);
+	}
 
+	/**
+	 * 貸出中の書籍ID取得
+	 *
+	 * @param bookInfo 書籍情報
+	 */
+	public int notId(int bookId) {
+
+		try {
+
+			String sql = "SELECT book_id from borrow where book_id=" + bookId;
+			return jdbcTemplate.queryForObject(sql, int.class);
+
+		} catch (Exception e) {
+
+			return 0;
+		}
 	}
 
 	/**
 	 * 貸し出し書籍返却
 	 *
-	 *@param bookInfo 書籍情報
+	 * @param bookInfo 書籍情報
 	 */
 	public void returnBook(int bookId) {
 		String sql = "delete from borrow where book_id =" + bookId;
