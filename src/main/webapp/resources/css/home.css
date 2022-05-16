@@ -323,3 +323,22 @@ hr.border_add {
 .bulk_form .caution p {
 	color: #fa8072;
 }
+
+.search{
+	display: flex; 
+	justify-content: flex-end;
+}
+
+.addBotton{
+	margin-right: auto;
+}
+
+.radioBotton{
+	margin: auto 0;
+	 padding: 20px;
+}
+
+.searchBotton{
+	display: inline-flex
+}
+

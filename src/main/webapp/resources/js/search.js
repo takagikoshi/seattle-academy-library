@@ -1,6 +1,6 @@
 $(function() {
-	let input = document.querySelector(".input");
-	let button = document.querySelector(".button");
+	let input = document.querySelector('#input1');
+	let button = document.querySelector("#input2");
 	button.disabled = true;
 	input.addEventListener("change", stateHandle);
 	function stateHandle() {
@@ -9,7 +9,6 @@ $(function() {
 		} else {
 			button.disabled = false;
 		}
-		return false;
+		return true;
 	}
-	stateHandle();
 });

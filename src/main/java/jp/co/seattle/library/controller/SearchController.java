@@ -40,8 +40,8 @@ public class SearchController {
 		logger.info("Welcome SearchController.java! The client locale is {}.", locale);
 
 		String select = request.getParameter("radiobutton");
-		String all = "完全一致";
-		String part = "部分一致";
+		String all = "1";
+		String part = "2";
 
 		if (select.equals(all)) {
 			model.addAttribute("bookList", booksService.searchAllBookList(search));
@@ -53,7 +53,6 @@ public class SearchController {
 			return "home";
 		}
 
-		model.addAttribute("bookList", booksService.getBookList());
 		return "home";
 	}
 }
