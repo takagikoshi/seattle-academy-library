@@ -31,10 +31,41 @@ public class BooksService {
 	 */
 	public List<BookInfo> getBookList() {
 
-		// TODO 取得したい情報を取得するようにSQLを修正
-		List<BookInfo> getedBookList = jdbcTemplate.query(
-				"select id, title, author, publisher , publish_date, thumbnail_url ,isbn, explanation ,reg_date,upd_date from books ORDER BY title",
-				new BookInfoRowMapper());
+		String sql = "select id, title, author, publisher , publish_date, thumbnail_url from books ORDER BY title";
+
+		List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+
+	/**
+	 * 検索した書籍リストを取得する（完全一致）
+	 *
+	 * @param 検索文字
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> searchAllBookList(String search) {
+
+		String sql = "select id, title, author, publisher , publish_date, thumbnail_url from books  where title ='"
+				+ search + "'ORDER BY title";
+
+		List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+
+	/**
+	 * 検索した書籍リストを取得する（部分一致）
+	 *
+	 * @param 検索文字
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> searchPartBookList(String search) {
+
+		String sql = "select id, title, author, publisher , publish_date, thumbnail_url ,isbn, explanation from books where title like '%"
+				+ search + "%'ORDER BY title";
+
+		List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
 
 		return getedBookList;
 	}
