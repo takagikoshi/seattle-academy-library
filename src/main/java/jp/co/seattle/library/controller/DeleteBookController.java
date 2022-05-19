@@ -45,9 +45,11 @@ public class DeleteBookController {
             Model model) {
         logger.info("Welcome delete! The client locale is {}.", locale);
         
-        int id = borrowService.notId(bookId);
+        //int id = borrowService.notId(bookId);
         
-        if(id != bookId) {
+        int borrow = borrowService.getBorrowHistory(bookId);
+
+		if (borrow == bookId) {
             booksService.deleteBook(bookId);
             borrowService.returnBook(bookId);
             model.addAttribute("bookList", booksService.getBookList());
