@@ -29,14 +29,14 @@
     <main>
         <h1>Home</h1>
         <form method="post" class="search" action="<%=request.getContextPath()%>/search">
-            <div class = "addBotton">
-                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a>
+            <div class="addBotton">
+                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括追加</a><a href="<%=request.getContextPath()%>/history" class="btn_history">貸出履歴一覧</a>
             </div>
-            <p class = "radioBotton">
+            <p class="radioBotton">
                 <input type="radio" name="radiobutton" value="1" checked="checked">完全一致 <input type="radio" name="radiobutton" value="2">部分一致
             </p>
-            <p class ="searchBotton">
-                <input id = "inputBox" class="input" type="search" name="search" placeholder="キーワードを入力"> <input id = "inputBotton" class="button" type="submit" name="submit" value="検索" style="width: 70px; background: #7fbfff; color: #fff; font-size: 16px">
+            <p class="searchBotton">
+                <input id="inputBox" class="input" type="search" name="search" placeholder="キーワードを入力"> <input id="inputBotton" class="button" type="submit" name="submit" value="検索" style="width: 70px; background: #7fbfff; color: #fff; font-size: 16px">
             </p>
         </form>
         <c:if test="${!empty select}">
